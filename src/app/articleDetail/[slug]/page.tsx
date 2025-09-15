@@ -20,15 +20,18 @@ interface ArticleDetailINT {
 export default async function ArticleDetail({ params }: any) {
   const { slug } = params;
 
-  const { data: article, error } = await supabase
-    .from<ArticleDetailINT>('article')
-    .select('*')
-    .eq('slug', slug)
-    .single();
+const { data, error } = await supabase
+  .from('article')
+  .select('*')
+  .eq('slug', slug)
+  .single();
 
-  if (!article || error) {
-    return notFound();
-  }
+const article = data as ArticleDetailINT | null;
+
+if (!article || error) {
+  return notFound();
+}
+
 
   return (
     <div className='mt-20 px-4 sm:px-6 lg:px-8'>
@@ -76,3 +79,4 @@ export default async function ArticleDetail({ params }: any) {
     </div>
   )
 }
+
