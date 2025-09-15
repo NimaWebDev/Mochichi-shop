@@ -17,19 +17,15 @@ interface ArticleDetailINT {
     created_at: number,
 }
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
+// فقط آرگومان params بدون تایپ PageProps
+export default async function ArticleDetail({ params }: { params: { slug: string } }) {
 
-export default async function ArticleDetail({ params }: PageProps) {
+  const { slug } = params;
 
   const { data: article, error } = await supabase
     .from<ArticleDetailINT>('article')
     .select('*')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .single(); 
 
   if (!article || error) {
