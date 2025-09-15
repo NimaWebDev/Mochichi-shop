@@ -17,23 +17,20 @@ interface ArticleDetailINT {
     created_at: number,
 }
 
+type PageProps = {
+  params: {
+    slug: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
-export default async function ArticleDetail({
-params 
-}: { 
-  params: { slug: string } 
-}) {
+export default async function ArticleDetail({ params }: PageProps) {
 
   const { data: article, error } = await supabase
-    .from('article')
+    .from<ArticleDetailINT>('article')
     .select('*')
     .eq('slug', params.slug)
     .single(); 
-
-  console.log("Supabase error:", error);
-  console.log("Searching for slug:", params.slug);
-  console.log("article found:", article);
-
 
   if (!article || error) {
     return notFound();
@@ -75,10 +72,10 @@ params
         </div>
 
         <div className='mt-20 max-w-[1357px] mx-auto'>
-         <div className='mr-15 md:mr-0 flex gap-2 mb-10'>
-           <Image src="/logo-comment/Frame 1261157127.png" width={96} height={73} alt='logo-comments'></Image>
-           <h2 className='text-[#2D2728] text-[24px] pt-3'>دیدگاه کاربران</h2>
-         </div>
+            <div className='mr-15 md:mr-0 flex gap-2 mb-10'>
+                <Image src="/logo-comment/Frame 1261157127.png" width={96} height={73} alt='logo-comments'/>
+                <h2 className='text-[#2D2728] text-[24px] pt-3'>دیدگاه کاربران</h2>
+            </div>
             <CommentForm productSlug={article.slug}/>
             <CommentList productSlug={article.slug}/>
         </div>
