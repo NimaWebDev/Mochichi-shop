@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { useEffect, useRef, useState, useMemo } from "react";
 
-// 👇 اینجا تایپ‌ها رو مشخص کردیم تا TypeScript گیر نده
 type Keyframe = Record<string, string | number>;
 
 const buildKeyframes = (from: Keyframe, steps: Keyframe[]): Record<string, (string | number)[]> => {
