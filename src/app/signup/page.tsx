@@ -25,14 +25,17 @@ const handleSignup = async () => {
       return
     }
 
-    if (!data.user) {
+    // اطمینان از وجود user
+    if (!data || !data.user) {
       setError('خطا در ایجاد کاربر')
       return
     }
     
+    const userId = data.user.id; // اینجا user رو جدا کردیم
+
     setTimeout(async () => {
       const { error: insertError } = await supabase.from('users').insert({
-        id: data.user.id,
+        id: userId,
         first_name: first_name.trim(),
         last_name: last_name.trim(),
         email: email.trim(),
@@ -40,7 +43,6 @@ const handleSignup = async () => {
       }).select()
 
       if (insertError) {
-
         if (insertError.code === '23505') { 
           router.push('/login')
         } else {
@@ -49,13 +51,14 @@ const handleSignup = async () => {
       } else {
         router.push('/login')
       }
-    }, 1000) 
+    }, 1000)
 
   } catch (err) {
     setError('خطای غیرمنتظره')
     console.error('Signup error:', err)
   }
 }
+
 
   return (
     <div className='xs:mr-10 s:mr-15 sm:mr-40 md:mr-90 mt-5 lg:flex lg:w-[1380px] ml-auto lg:mr-auto justify-around items-center text-right'>
