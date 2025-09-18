@@ -36,8 +36,9 @@ export default function UserProfile() {
           throw new Error('User not authenticated')
         }
 
+        // ✅ اینجا فیکس شد
         setAuthInfo({
-          email: user.email,
+          email: user.email ?? null,
           created_at: user.created_at ?? null,
           last_sign_in_at: user.last_sign_in_at ?? null,
         })
@@ -52,7 +53,7 @@ export default function UserProfile() {
 
         setUserInfo({
           ...data,
-          email: user.email ?? '',
+          email: user.email ?? '', // اگه undefined باشه خالی برگردون
         })
       } catch (error) {
         console.error('Error fetching user data:', error)
@@ -80,42 +81,52 @@ export default function UserProfile() {
   return (
     <div className='w-[392px] shadow shadow-[#EDEDED] mt-20 justify-center items-center text-center'>
       <div>
-        <Image className='ml-auto mr-auto mt-10' src="/image-dashboard/icons8-profile-picture-50.png" width={144} height={144} alt='image-user'></Image>
+        <Image
+          className='ml-auto mr-auto mt-10'
+          src="/image-dashboard/icons8-profile-picture-50.png"
+          width={144}
+          height={144}
+          alt='image-user'
+        />
       </div>
       {userInfo ? (
         <div key={userInfo.id}>
-            <p>{userInfo.first_name} {userInfo.last_name}</p>
-            <span>{userInfo.email}</span>
+          <p>{userInfo.first_name} {userInfo.last_name}</p>
+          <span>{userInfo.email}</span>
         </div>
-      ): (
+      ) : (
         <p>کاربر پیدا نشد !</p>
       )}
       <div>
         <div className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 mt-10 justify-center items-center text-center ml-auto mr-auto'>
-            <Image src="/image-dashboard/icons8-dashboard.png" width={24} height={24} alt='logo-dashboard'></Image>
-            <span>داشبورد</span>
+          <Image src="/image-dashboard/icons8-dashboard.png" width={24} height={24} alt='logo-dashboard' />
+          <span>داشبورد</span>
         </div>
         <Link href="/cart">
-            <div className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 justify-center items-center text-center cursor-pointer ml-auto mr-auto transition-all hover:font-bold'>
-              <Image src="/image-dashboard/icons8-cart.png" width={24} height={24} alt='logo-dashboard'></Image>
-              <span>خرید ها</span>
+          <div className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 justify-center items-center text-center cursor-pointer ml-auto mr-auto transition-all hover:font-bold'>
+            <Image src="/image-dashboard/icons8-cart.png" width={24} height={24} alt='logo-dashboard' />
+            <span>خرید ها</span>
           </div>
         </Link>
         <Link href="/gallary">
           <div className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 justify-center items-center text-center cursor-pointer ml-auto mr-auto transition-all hover:font-bold'>
-            <Image src="/image-dashboard/icons8-gallery.png" width={24} height={24} alt='logo-dashboard'></Image>
+            <Image src="/image-dashboard/icons8-gallery.png" width={24} height={24} alt='logo-dashboard' />
             <span>گالری</span>
           </div>
         </Link>
         <div className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 justify-center items-center text-center cursor-pointer ml-auto mr-auto transition-all hover:font-bold'>
-            <Image src="/image-dashboard/icons8-settings.png" width={24} height={24} alt='logo-dashboard'></Image>
-            <span>تنظیمات</span>
+          <Image src="/image-dashboard/icons8-settings.png" width={24} height={24} alt='logo-dashboard' />
+          <span>تنظیمات</span>
         </div>
-        <div onClick={handleLogout} className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 justify-center items-center text-center cursor-pointer ml-auto mr-auto transition-all hover:bg-red-500 hover:text-white'>
-            <Image src="/image-dashboard/icons8-log-out.png" width={24} height={24} alt='logo-dashboard'></Image>
-            <span>خروج از حساب</span>
+        <div
+          onClick={handleLogout}
+          className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 justify-center items-center text-center cursor-pointer ml-auto mr-auto transition-all hover:bg-red-500 hover:text-white'
+        >
+          <Image src="/image-dashboard/icons8-log-out.png" width={24} height={24} alt='logo-dashboard' />
+          <span>خروج از حساب</span>
         </div>
       </div>
     </div>
   )
 }
+
