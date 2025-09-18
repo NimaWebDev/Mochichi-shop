@@ -21,12 +21,12 @@ interface Product {
 export default async function ProductDetails({ params }: any) {
   const { slug } = params;
 
-  const { data: product, error } = await supabase
-    .from<Product>('products')
-    .select('*')
-    .eq('slug', slug)
-    .single(); 
-
+const { data: product, error } = await supabase
+  .from('products')
+  .select('*')
+  .eq('slug', slug)
+  .single<Product>();
+  
   if (!product || error) {
     return notFound();
   }
