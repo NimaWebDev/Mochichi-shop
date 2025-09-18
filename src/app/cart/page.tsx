@@ -21,7 +21,7 @@ interface CartItem {
 }
 
 export default function Cart() {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
