@@ -14,17 +14,17 @@ function Ad({ hideBanner = false }: { hideBanner?: boolean }) {
                 <div data-aos="fade-down" className='w-[310px] h-[165px]'>
                     <Image src="/logo-ads/wallet-check.png" width={35} height={35} alt='logo'></Image>
                     <h2 className='text-[#121111] text-[16px] font-semibold pt-5'>پرداخت امن با درگاه امن</h2>
-                    <p className='text-[#929292] text-[13px] leading-5	pt-5'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله است</p>
+                    <p className='text-[#929292] xs:w-[300px] text-[13px] leading-5	pt-5'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله است</p>
                 </div>
                 <div data-aos="fade-down" className='w-[310px] h-[165px]'>
                     <Image src="/logo-ads/grammerly.png" width={35} height={35} alt='logo'></Image>
                     <h2 className='text-[#121111] text-[16px] font-semibold pt-5'>رضایت بیش از ۱ میلیون مشتری</h2>
-                    <p className='text-[#929292] text-[13px] leading-5	pt-5'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله است</p>
+                    <p className='text-[#929292] xs:w-[300px] text-[13px] leading-5	pt-5'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله است</p>
                 </div>
                 <div data-aos="fade-down" className='w-[310px] h-[165px]'> 
                     <Image src="/logo-ads/24-support.png" width={35} height={35} alt='logo'></Image>
                     <h2 className='text-[#121111] text-[16px] font-semibold pt-5'>پشتیبانی ۲۴ ساعته</h2>
-                    <p className='text-[#929292] text-[13px] leading-5	pt-5'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله است</p>
+                    <p className='text-[#929292] xs:w-[300px] text-[13px] leading-5	pt-5'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله است</p>
                 </div>
             </div>
         </div>
