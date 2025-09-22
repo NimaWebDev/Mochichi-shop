@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('/fonts/Estedad-Regular.woff2') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@theme{
+  --breakpoint-xs: 350px;
+  --breakpoint-s: 400px;
+}
+
+html, body {
+  overflow-x: hidden;
+  font-family: 'MyCustomFont';
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  @apply w-10 h-10 bg-[#30303D] rounded-full flex justify-center items-center;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: white;
+}
+
