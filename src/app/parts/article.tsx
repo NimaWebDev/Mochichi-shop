@@ -28,7 +28,7 @@ function Article() {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:flex justify-center items-center gap-20 mt-20'>
             {articles.slice(0, 3).map((article)=>(
                 <div data-aos="fade-down" className='w-[342px] h-[218px] mx-auto mt-5 lg:w-[354px] lg:h-[218px] lg:mt-0 lg:mx-0' key={article.id}>
-                    <Image src={article.image} width={354} height={218} alt='image'></Image>
+                    <Image className='w-[347px] h-[218px]' src={article.image} width={354} height={218} alt='image'></Image>
                     <h2 className='text-[#2D2728] text-[18px] pt-5 pr-2'>{article.name}</h2>
                     <div className='flex justify-between pt-5'>
                         <p className='pr-2 text-[#A89C9F] text-[14px]'>{article.category}</p>

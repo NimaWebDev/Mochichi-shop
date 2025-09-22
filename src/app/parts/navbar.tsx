@@ -161,7 +161,7 @@ function Navbar() {
             placeholder='جستجو در فروشگاه ...'
           />
           <Image
-            className='w-[22px] h-[22px] mt-3 mr-2 cursor-pointer'
+            className='w-[22px] h-[22px] mt-3 ml-2 cursor-pointer'
             src="/logo-nav/search.png"
             width={22}
             height={22}
