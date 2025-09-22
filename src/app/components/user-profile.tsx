@@ -128,9 +128,5 @@ export default function UserProfile() {
       </div>
     </div>
   )
-<<<<<<< HEAD
 }
 
-=======
-}
->>>>>>> 02ee0cc (fix bugs)
