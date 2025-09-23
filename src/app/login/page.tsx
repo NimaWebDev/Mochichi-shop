@@ -23,10 +23,8 @@ export default function LoginPage() {
       const { data: { session } } = await supabase.auth.getSession()
       
       if (session) {
-        // کاربر قبلاً لاگین کرده، برو به صفحه مناسب
         await redirectBasedOnRole(session.user.id)
       } else {
-        // کاربر لاگین نکرده، صفحه لاگین رو نشان بده
         setCheckingSession(false)
       }
     } catch (error) {
@@ -50,7 +48,6 @@ export default function LoginPage() {
           router.push('/dashboard')
         }
       } else {
-        // اگر کاربر در جدول users نبود
         router.push('/dashboard')
       }
     } catch (error) {
@@ -75,7 +72,6 @@ export default function LoginPage() {
         return
       }
 
-      // پس از لاگین موفق
       await redirectBasedOnRole(data.user.id)
 
     } catch (error) {
@@ -85,7 +81,6 @@ export default function LoginPage() {
     }
   }
 
-  // اگر در حال بررسی session هستیم، لودینگ نشان بده
   if (checkingSession) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -97,7 +92,6 @@ export default function LoginPage() {
     )
   }
 
-  // صفحه اصلی لاگین
   return (
     <div className='xs:mr-10 s:mr-15 sm:mr-40 md:mr-90 mt-5 lg:flex lg:w-[1380px] ml-auto lg:mr-auto justify-around items-center text-right'>
       <div className='sm:w-[496px]'>

@@ -1,6 +1,7 @@
 "use client"
 import UserProfile from "../components/user-profile"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { supabase } from "@/app/lib/supabase"
 
 interface Product {
@@ -23,41 +24,36 @@ export default function Dashboard() {
   const [activeOrders, setActiveOrders] = useState<number>(0)
   const [lastOrder, setLastOrder] = useState<Product | null>(null)
   const [joinDate, setJoinDate] = useState<string>("")
+  const router = useRouter()
 
-  useEffect(() => {
-    fetchUserData()
-    fetchCartData()
-  }, [])
+const fetchUserData = async () => {
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) {
+    router.push('/login')
+    return
+  }
+  if (user.created_at) {
+    const date = new Date(user.created_at)
+    setJoinDate(date.toLocaleDateString('fa-IR'))
+  }
+}
 
-  const fetchUserData = async () => {
-    const { data: { user } } = await supabase.auth.getUser()
-    if (user?.created_at) {
-      const date = new Date(user.created_at)
-      setJoinDate(date.toLocaleDateString('fa-IR'))
+const fetchCartData = async () => {
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return 
+  const { data: cartData, error } = await supabase
+    .from('cart')
+    .select('id, quantity, products(*)')
+    .eq('user_id', user.id)
+
+  if (!error && cartData) {
+    setActiveOrders(cartData.length)
+    if (cartData.length > 0) {
+      const allProducts: Product[] = cartData.flatMap(item => item.products)
+      setLastOrder(allProducts[allProducts.length - 1])
     }
   }
-
-  const fetchCartData = async () => {
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return
-
-    const { data: cartData, error } = await supabase
-      .from('cart')
-      .select('id, quantity, products(*)')
-      .eq('user_id', user.id)
-
-    if (!error && cartData) {
-      setActiveOrders(cartData.length)
-      
-      if (cartData.length > 0) {
-        const allProducts: Product[] = cartData.flatMap(item => item.products)
-      
-        const lastProduct = allProducts[allProducts.length - 1]
-      
-        setLastOrder(lastProduct)
-      }
-    }
-  }
+}
 
   return (
     <div className="flex flex-col md:flex-row gap-6 md:gap-10 justify-center md:justify-around max-w-6xl mx-auto px-4">
@@ -66,7 +62,6 @@ export default function Dashboard() {
       </div>
       
       <div className="w-full md:w-[800px] mt-6 md:mt-20 shadow-lg rounded-2xl bg-white p-6">
-        {/* هدر */}
         <div className="mb-8 text-center md:text-right">
           <h1 className="text-2xl md:text-3xl font-bold mb-2">داشبورد کاربری</h1>
           <p className="text-gray-600">به حساب کاربری خود خوش آمدید</p>
