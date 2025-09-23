@@ -97,6 +97,7 @@ function Navbar() {
           </div>
         </div>
         <div className='flex gap-5'>
+          <LoginBTN />
           <div className='flex w-[150px] h-[44px] bg-[#FFF0F7] rounded-[43px] justify-center items-center'>
             <Link className='flex' href="/cart">
               <Image className='ml-5' src="/logo-nav/shopping-cart-logo.png" width={20} height={20} alt='cart' />
