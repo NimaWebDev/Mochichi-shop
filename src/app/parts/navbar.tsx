@@ -120,15 +120,25 @@ function Navbar() {
             <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>گالری</h3>
           </Link>
           <p className='pt-1 text-[#ACACB1]'>*</p>
-          <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>کیف و کوله</h3>
+          <Link href="/shop">
+            <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>کیف و کوله</h3>
+          </Link>
           <p className='pt-1 text-[#ACACB1]'>*</p>
-          <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>چراغ خواب</h3>
+          <Link href="/shop">
+            <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>چراغ خواب</h3>
+          </Link>
           <p className='pt-1 text-[#ACACB1]'>*</p>
-          <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>لوازم آرایشی</h3>
+          <Link href="/shop">
+            <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>لوازم آرایشی</h3>
+          </Link>
           <p className='pt-1 text-[#ACACB1]'>*</p>
-          <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>لوازم جانبی</h3>
+          <Link href="/shop">
+            <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>لوازم جانبی</h3>
+          </Link>
           <p className='pt-1 text-[#ACACB1]'>*</p>
-          <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>اکسسوری خاص</h3>
+          <Link href="/shop">
+            <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>اکسسوری خاص</h3>
+          </Link>
         </div>
         <div className='w-[167px] h-[40px] bg-[#434355] rounded-[35px] mr-110 mt-2.5 '>
           <Link className='flex justify-center items-center mt-2' href="/contact-us">
