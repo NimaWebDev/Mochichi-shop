@@ -78,7 +78,7 @@ export default function UserProfile() {
   if (loading) return <div>در حال بارگذاری...</div>
 
   return (
-    <div className='xs:w-[300px] s:w-[392px] h-[700px] shadow-lg rounded-2xl bg-white mt-20 justify-center items-center text-center'>
+    <div className='xs:w-[300px] xs:mr-5 s:w-[392px] h-[700px] shadow-lg rounded-2xl bg-white mt-20 justify-center items-center text-center'>
       <div>
         <Image
           className='ml-auto mr-auto mt-10'
