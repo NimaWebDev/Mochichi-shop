@@ -22,7 +22,7 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center text-center">
         <WebTitle />
         <Image className="ml-auto mr-auto" src="/logo-home/logo-title-home.png" width={179} height={19} alt="logo"></Image>
-        <p className="w-[342px] leading-[180%] lg:w-[498px] ml-auto mr-auto text-[14px] text-[#A89C9F] lg:leading-[1.8]">موچیچی وارد کننده انواع اکسسوری - لوازم جانبی و لوازم تحریر خارجی میباشد و این یک متن تستی است جهت نمایش موچیچی</p>
+        <p className="w-[322px] leading-[180%] lg:w-[498px] ml-auto mr-auto text-[14px] text-[#A89C9F] lg:leading-[1.8]">موچیچی وارد کننده انواع اکسسوری - لوازم جانبی و لوازم تحریر خارجی میباشد و این یک متن تستی است جهت نمایش موچیچی</p>
         <Link href="/shop">
           <button className="w-[244px] h-[44px] bg-[#FF6687] rounded-[43px] text-[#FFFFFF] cursor-pointer mt-10">مشاهده محصولات</button>
         </Link>

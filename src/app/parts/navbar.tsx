@@ -67,7 +67,7 @@ function Navbar() {
                 ارتباط با مجموعه
               </Link>
               
-              <div className="pt-4 flex text-center gap-2">
+              <div className="pt-4 flex text-center gap-2" onClick={() => setOpen(false)}>
                 <LoginBTN />
                 <p className='text-lg pt-1.5'>ثبت نام</p>
               </div>

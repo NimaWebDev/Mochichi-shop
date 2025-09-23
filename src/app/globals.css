@@ -13,8 +13,9 @@
 }
 
 html, body {
-  overflow-x: hidden;
   font-family: 'MyCustomFont';
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .swiper-button-prev,

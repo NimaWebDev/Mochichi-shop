@@ -44,9 +44,9 @@ function Category() {
             <h1 className='text-[18px] md:text-[24px] text-white font-semibold'>دسته بندی محصولات</h1>
             <Image src="/logo-category/logo-left-category.png" width={37} height={14} alt='logo' ></Image>
         </div>
-        <div className='w-[342px] lg:w-[1400px] mr-15 gap-y-5 grid grid-cols-2 md:flex justify-center items-center md:gap-10'>
+        <div data-aos="fade-down" className='w-[342px] lg:w-[1400px] mr-15 gap-y-5 grid grid-cols-2 md:flex justify-center items-center md:gap-10'>
             {categories.map((item)=>(
-                <div data-aos="fade-down" className='bg-white w-[113px] h-[138px] md:w-[137px] md:h-[161px] rounded-[20px] justify-center items-center text-center cursor-pointer transition-all md:hover:w-[148px] hover:h-[170px] hover:mb-5' key={item.id} onClick={() => handleClick(item.slug)}>
+                <div className='bg-white w-[113px] h-[138px] md:w-[137px] md:h-[161px] rounded-[20px] justify-center items-center text-center cursor-pointer transition-all md:hover:w-[148px] hover:h-[170px] hover:mb-5' key={item.id} onClick={() => handleClick(item.slug)}>
                     <Image className='bg-[#FFF0F7] rounded-[20px] w-[86px] h-[78px] md:w-[100px] md:h-[91px] ml-auto mr-auto mt-5' src={item.logo} width={76} height={76} alt='logo'></Image>
                     <h2 className='text-[14px] text-[#2D2728] pt-3 font-medium'>{item.name}</h2>
                 </div>
