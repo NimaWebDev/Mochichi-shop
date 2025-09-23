@@ -3,7 +3,6 @@ import UserProfile from "../components/user-profile"
 import { useEffect, useState } from "react"
 import { supabase } from "@/app/lib/supabase"
 
-// تعریف تایپ‌ها
 interface Product {
   id: number
   name: string
@@ -15,11 +14,10 @@ interface Product {
 interface CartItem {
   id: number
   quantity: number
-  products: Product
+  products: Product[]
   user_id: string
   created_at: string
 }
-
 
 export default function Dashboard() {
   const [activeOrders, setActiveOrders] = useState<number>(0)
@@ -43,32 +41,30 @@ export default function Dashboard() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    // تعداد آیتم‌های سبد خرید
     const { data: cartData, error } = await supabase
       .from('cart')
       .select('id, quantity, products(*)')
       .eq('user_id', user.id)
 
     if (!error && cartData) {
-      // تعداد سفارشات فعال = تعداد آیتم‌های سبد خرید
       setActiveOrders(cartData.length)
       
-      // آخرین محصول اضافه شده به سبد خرید
       if (cartData.length > 0) {
-        const lastItem = cartData[cartData.length - 1]
-        setLastOrder(lastItem.products)
+        const allProducts: Product[] = cartData.flatMap(item => item.products)
+      
+        const lastProduct = allProducts[allProducts.length - 1]
+      
+        setLastOrder(lastProduct)
       }
     }
   }
 
   return (
     <div className="flex flex-col md:flex-row gap-6 md:gap-10 justify-center md:justify-around max-w-6xl mx-auto px-4">
-      {/* سایدبار پروفایل */}
       <div className="w-full md:w-auto">
         <UserProfile />
       </div>
       
-      {/* بخش اصلی داشبورد کاربر */}
       <div className="w-full md:w-[800px] mt-6 md:mt-20 shadow-lg rounded-2xl bg-white p-6">
         {/* هدر */}
         <div className="mb-8 text-center md:text-right">
@@ -76,7 +72,6 @@ export default function Dashboard() {
           <p className="text-gray-600">به حساب کاربری خود خوش آمدید</p>
         </div>
 
-        {/* کارت‌های اطلاعات کاربر */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <div className="bg-[#EDEDED] p-4 rounded-xl border border-gray-300">
             <div className="flex items-center justify-between">
@@ -99,7 +94,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* آخرین سفارش */}
         <div className="gap-6 mb-8">
           <div className="bg-[#EDEDED] p-6 rounded-xl border border-gray-300">
             <h3 className="font-semibold mb-3 text-right">آخرین محصول اضافه شده به سبد خرید</h3>
@@ -130,7 +124,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* پیام خوشامدگویی */}
         <div className="bg-gradient-to-r from-gray-100 to-gray-200 p-6 rounded-xl mb-6">
           <h3 className="font-semibold mb-2 text-right">به خانواده ما خوش آمدید! 👋</h3>
           <p className="text-right text-gray-700">
@@ -138,7 +131,6 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* دکمه‌های اقدام سریع */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button 
             onClick={() => window.location.href = '/shop'}
