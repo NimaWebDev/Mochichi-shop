@@ -108,7 +108,9 @@ function Navbar() {
       </header>
       <div className='hidden md:flex w-[1380px] h-[60px] bg-[#30303D] ml-auto mr-auto rounded-[66px] mt-5'>
         <div className='flex pt-4 pr-5 gap-3'>
-          <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>صفحه اصلی</h3>
+          <Link href="/">
+            <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>صفحه اصلی</h3>
+          </Link>
           <p className='pt-1 text-[#ACACB1]'>*</p>
           <Link href="/abaut_us">
             <h3 className='text-[14px] text-[#ACACB1] hover:text-white cursor-pointer'>درباره ما</h3>
