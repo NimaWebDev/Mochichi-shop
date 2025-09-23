@@ -1,8 +1,8 @@
 "use client"
 import UserProfile from "../components/user-profile"
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 import { supabase } from "@/app/lib/supabase"
+import { useRouter } from 'next/navigation'
 
 interface Product {
   id: number
@@ -25,35 +25,52 @@ export default function Dashboard() {
   const [lastOrder, setLastOrder] = useState<Product | null>(null)
   const [joinDate, setJoinDate] = useState<string>("")
   const router = useRouter()
+  const [loading, setLoading] = useState(true)
 
-const fetchUserData = async () => {
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) {
-    router.push('/login')
-    return
-  }
-  if (user.created_at) {
-    const date = new Date(user.created_at)
-    setJoinDate(date.toLocaleDateString('fa-IR'))
-  }
-}
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
 
-const fetchCartData = async () => {
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return 
-  const { data: cartData, error } = await supabase
-    .from('cart')
-    .select('id, quantity, products(*)')
-    .eq('user_id', user.id)
+      if (!user) {
+        router.push('/login') 
+        return
+      }
 
-  if (!error && cartData) {
-    setActiveOrders(cartData.length)
-    if (cartData.length > 0) {
-      const allProducts: Product[] = cartData.flatMap(item => item.products)
-      setLastOrder(allProducts[allProducts.length - 1])
+      if (user.created_at) {
+        const date = new Date(user.created_at)
+        setJoinDate(date.toLocaleDateString('fa-IR'))
+      }
+
+      const { data: cartData, error } = await supabase
+        .from('cart')
+        .select('id, quantity, products(*)')
+        .eq('user_id', user.id)
+
+      if (!error && cartData) {
+        setActiveOrders(cartData.length)
+
+        if (cartData.length > 0) {
+          const allProducts: Product[] = cartData.flatMap(item => item.products)
+          setLastOrder(allProducts[allProducts.length - 1])
+        }
+      }
+
+      setLoading(false)
     }
+
+    fetchData()
+  }, [router])
+  
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center ">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">در حال بارگذاری...</p>
+        </div>
+      </div>
+    )
   }
-}
 
   return (
     <div className="flex flex-col md:flex-row gap-6 md:gap-10 justify-center md:justify-around max-w-6xl mx-auto px-4">
@@ -62,6 +79,7 @@ const fetchCartData = async () => {
       </div>
       
       <div className="w-full md:w-[800px] mt-6 md:mt-20 shadow-lg rounded-2xl bg-white p-6">
+        {/* هدر */}
         <div className="mb-8 text-center md:text-right">
           <h1 className="text-2xl md:text-3xl font-bold mb-2">داشبورد کاربری</h1>
           <p className="text-gray-600">به حساب کاربری خود خوش آمدید</p>
@@ -111,7 +129,10 @@ const fetchCartData = async () => {
             ) : (
               <div className="text-center py-8 text-gray-500">
                 <p>هنوز محصولی به سبد خرید اضافه نکرده‌اید</p>
-                <button className="mt-3 bg-gray-700 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-800 transition">
+                <button 
+                  onClick={() => router.push('/shop')}
+                  className="mt-3 bg-gray-700 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-800 transition"
+                >
                   مشاهده محصولات
                 </button>
               </div>
@@ -128,13 +149,13 @@ const fetchCartData = async () => {
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button 
-            onClick={() => window.location.href = '/shop'}
+            onClick={() => router.push('/shop')}
             className="bg-gray-800 text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-900 transition cursor-pointer"
           >
             مشاهده محصولات
           </button>
           <button 
-            onClick={() => window.location.href = '/cart'}
+            onClick={() => router.push('/cart')}
             className="bg-gray-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-700 transition cursor-pointer"
           >
             مشاهده سبد خرید
