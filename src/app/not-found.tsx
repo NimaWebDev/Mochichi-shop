@@ -1,4 +1,3 @@
-// app/not-found.tsx
 import Link from 'next/link';
 import React from 'react';
 
@@ -10,7 +9,7 @@ const NotFoundPage: React.FC = () => {
         <div className="relative mb-8">
           <div className="w-24 h-24 mx-auto mb-4">
             <div className="w-full h-4 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full rotate-45 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-            <div className="w-6 h-4 bg-pink-500 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45 translate-x-[-50px]"></div>
+            <div className="w-6 h-4 bg-pink-500 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45 "></div>
           </div>
           <div className="w-64 h-2 bg-red-400 mx-auto rounded-full opacity-80 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-200 to-transparent animate-[shimmer_2s_infinite]"></div>
@@ -30,7 +29,6 @@ const NotFoundPage: React.FC = () => {
           مثل این می‌مونه که تو یه داستان، یه صفحه رو پاره کرده باشن!
         </p>
 
-        {/* دکمه‌های اقدام (Call to Action) */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/"

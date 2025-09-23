@@ -127,7 +127,7 @@ export default function LoginPage() {
               placeholder='رمز خود را وارد کنید'  
               className='w-[288px] h-[40px] rounded-[8px] border border-[#C30000] pr-3 text-[12px]'
               required
-              maxLength={8}
+              maxLength={15}
             />
           </div>
           <p className='text-[#242424] text-[10px] mt-5 pr-5'>ورود و عضویت شما به منزله پذیرفتن قوانین و مقررات می باشد.</p>

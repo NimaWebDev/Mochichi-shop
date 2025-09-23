@@ -78,7 +78,7 @@ const handleSignup = async () => {
         </div>
         <div className='w-[288px]'>
           <h2 className='text-right text-[#C30000] text-[14px] mb-2 mt-3'>رمز</h2>
-          <input onChange={(e)=> setPassword(e.target.value)} maxLength={8} value={password} type="password" placeholder='...'  className='w-[288px] h-[40px] rounded-[8px] border border-[#C30000] pr-3 text-[12px]'/>
+          <input onChange={(e)=> setPassword(e.target.value)} maxLength={15} value={password} type="password" placeholder='...'  className='w-[288px] h-[40px] rounded-[8px] border border-[#C30000] pr-3 text-[12px]'/>
         </div>
         <p className='text-[#242424] text-[10px] mt-5 pr-5'>ثبت نام و عضویت شما به منزله پذیرفتن قوانین و مقررات می باشد.</p>
         <button onClick={handleSignup} className='w-[288] h-[40] rounded-[8px] bg-[#A72F3B] text-white mt-5 cursor-pointer'>ثبت نام</button>

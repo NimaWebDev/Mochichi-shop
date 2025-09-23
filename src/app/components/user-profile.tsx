@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
-interface UserInfo {
+export interface UserInfo {
   id: string
   first_name: string
   last_name: string
@@ -15,7 +15,7 @@ interface UserInfo {
   last_sign_in_at?: string | null
 }
 
-interface AuthInfo {
+export interface AuthInfo {
   email: string | null
   created_at?: string | null
   last_sign_in_at?: string | null
@@ -36,7 +36,6 @@ export default function UserProfile() {
           throw new Error('User not authenticated')
         }
 
-        // ✅ اینجا فیکس شد
         setAuthInfo({
           email: user.email ?? null,
           created_at: user.created_at ?? null,
@@ -53,7 +52,7 @@ export default function UserProfile() {
 
         setUserInfo({
           ...data,
-          email: user.email ?? '', // اگه undefined باشه خالی برگردون
+          email: user.email ?? '', 
         })
       } catch (error) {
         console.error('Error fetching user data:', error)
@@ -79,7 +78,7 @@ export default function UserProfile() {
   if (loading) return <div>در حال بارگذاری...</div>
 
   return (
-    <div className='w-[392px] shadow shadow-[#EDEDED] mt-20 justify-center items-center text-center'>
+    <div className='w-[392px] h-[700px] shadow-lg rounded-2xl bg-white mt-20 justify-center items-center text-center'>
       <div>
         <Image
           className='ml-auto mr-auto mt-10'
@@ -114,10 +113,12 @@ export default function UserProfile() {
             <span>گالری</span>
           </div>
         </Link>
-        <div className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 justify-center items-center text-center cursor-pointer ml-auto mr-auto transition-all hover:font-bold'>
-          <Image src="/image-dashboard/icons8-settings.png" width={24} height={24} alt='logo-dashboard' />
-          <span>تنظیمات</span>
-        </div>
+        <Link href="/dashboard/userSettings">
+          <div className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 justify-center items-center text-center cursor-pointer ml-auto mr-auto transition-all hover:font-bold'>
+            <Image src="/image-dashboard/icons8-settings.png" width={24} height={24} alt='logo-dashboard' />
+            <span>تنظیمات</span>
+          </div>
+        </Link>
         <div
           onClick={handleLogout}
           className='flex gap-3 w-[322px] h-[60px] rounded-2xl border-b border-b-[#EDEDED] mb-5 justify-center items-center text-center cursor-pointer ml-auto mr-auto transition-all hover:bg-red-500 hover:text-white'
