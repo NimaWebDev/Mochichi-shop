@@ -46,7 +46,7 @@ function Category() {
         </div>
         <div data-aos="fade-down" className='w-[342px] lg:w-[1400px] mr-15 gap-y-5 grid grid-cols-2 md:flex justify-center items-center md:gap-10'>
             {categories.map((item)=>(
-                <div className='bg-white w-[113px] h-[138px] md:w-[137px] md:h-[161px] rounded-[20px] justify-center items-center text-center cursor-pointer transition-all md:hover:w-[148px] hover:h-[170px] hover:mb-5' key={item.id} onClick={() => handleClick(item.slug)}>
+                <div className='bg-white w-[113px] h-[138px] md:w-[137px] md:h-[161px] rounded-[20px] justify-center items-center text-center cursor-pointer transition-transform duration-300 hover:-translate-y-5' key={item.id} onClick={() => handleClick(item.slug)}>
                     <Image className='bg-[#FFF0F7] rounded-[20px] w-[86px] h-[78px] md:w-[100px] md:h-[91px] ml-auto mr-auto mt-5' src={item.logo} width={76} height={76} alt='logo'></Image>
                     <h2 className='text-[14px] text-[#2D2728] pt-3 font-medium'>{item.name}</h2>
                 </div>
